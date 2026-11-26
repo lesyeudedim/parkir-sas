@@ -1,0 +1,412 @@
+
+@baseUrl = http://localhost:3000
+
+### 1. LOGIN ADMIN
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "AdminParkir2026!"
+}
+
+### 2. LIHAT SEMUA USER
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 3. TAMBAH USER PETUGAS
+POST {{baseUrl}}/api/users
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_lengkap": "Petugas Parkir 1",
+  "username": "petugas1",
+  "password": "PetugasParkir123",
+  "role": "petugas",
+  "status_aktif": 1
+}
+
+### 4. LIHAT USER BERDASARKAN ID
+GET {{baseUrl}}/api/users/2
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 5. UPDATE DATA USER
+PUT {{baseUrl}}/api/users/2
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_lengkap": "Petugas Parkir Utama"
+}
+
+### 6. TAMBAH USER UNTUK TEST DELETE
+POST {{baseUrl}}/api/users
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_lengkap": "User Percobaan Hapus",
+  "username": "testhapus1",
+  "password": "TestHapus123!",
+  "role": "petugas",
+  "status_aktif": 1
+}
+### 7. DELETE USER PERCOBAAN
+DELETE {{baseUrl}}/api/users/3
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 8. CEK USER SETELAH DELETE
+GET {{baseUrl}}/api/users/3
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 9. LIHAT SEMUA TARIF PARKIR
+GET {{baseUrl}}/api/tarif
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 10. LIHAT TARIF MOTOR BERDASARKAN ID
+GET {{baseUrl}}/api/tarif/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 11. LIHAT TARIF MOBIL BERDASARKAN ID
+GET {{baseUrl}}/api/tarif/2
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 12. UPDATE TARIF MOTOR
+PUT {{baseUrl}}/api/tarif/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "jenis_kendaraan": "motor",
+  "tarif_per_jam": 4000
+}
+
+### 13. CEK HASIL UPDATE TARIF MOTOR
+GET {{baseUrl}}/api/tarif/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 14. KEMBALIKAN TARIF MOTOR
+PUT {{baseUrl}}/api/tarif/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "jenis_kendaraan": "motor",
+  "tarif_per_jam": 3000
+}
+
+### 15. TEST DELETE TARIF YANG TIDAK ADA
+DELETE {{baseUrl}}/api/tarif/99999
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 16. TAMBAH TARIF PERCOBAAN
+POST {{baseUrl}}/api/tarif
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "jenis_kendaraan": "lainnya",
+  "tarif_per_jam": 8000
+}
+
+### 17. DELETE TARIF PERCOBAAN
+DELETE {{baseUrl}}/api/tarif/3
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 18. CEK TARIF SETELAH DELETE
+GET {{baseUrl}}/api/tarif
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 19. LIHAT SEMUA AREA PARKIR
+GET {{baseUrl}}/api/area
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 20. TAMBAH AREA PARKIR
+POST {{baseUrl}}/api/area
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_area": "Area Parkir A",
+  "kapasitas": 20
+}
+
+### 21. LIHAT AREA PARKIR BERDASARKAN ID
+GET {{baseUrl}}/api/area/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 22. UPDATE NAMA AREA PARKIR
+PUT {{baseUrl}}/api/area/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_area": "Area Parkir Utama",
+  "kapasitas": 20
+}
+
+### 23. CEK HASIL UPDATE AREA PARKIR
+GET {{baseUrl}}/api/area/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 24. TAMBAH AREA PERCOBAAN DELETE
+POST {{baseUrl}}/api/area
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_area": "Area Percobaan Hapus",
+  "kapasitas": 2
+}
+
+
+### 25. DELETE AREA PERCOBAAN
+DELETE {{baseUrl}}/api/area/3
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 26. CEK SEMUA AREA PARKIR
+GET {{baseUrl}}/api/area
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 27. LIHAT SEMUA KENDARAAN
+GET {{baseUrl}}/api/kendaraan
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 28. TAMBAH KENDARAAN MOTOR
+POST {{baseUrl}}/api/kendaraan
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor"
+}
+
+### 29. LIHAT KENDARAAN BERDASARKAN ID
+GET {{baseUrl}}/api/kendaraan/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 30. UPDATE DATA KENDARAAN
+PUT {{baseUrl}}/api/kendaraan/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor",
+  "warna": "Hitam"
+}
+
+
+### 31. TAMBAH KENDARAAN UNTUK TEST DELETE
+POST {{baseUrl}}/api/kendaraan
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 9999 TES",
+  "jenis_kendaraan": "motor",
+  "warna": "Merah"
+}
+
+### 32. DELETE KENDARAAN PERCOBAAN
+DELETE {{baseUrl}}/api/kendaraan/2
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 33. CEK KENDARAAN SETELAH DELETE
+GET {{baseUrl}}/api/kendaraan
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 34. LOGIN PETUGAS
+# @name loginPetugas
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "petugas1",
+  "password": "PetugasParkir123"
+}
+
+### 35. LIHAT SLOT PARKIR KOSONG
+GET {{baseUrl}}/api/parkir/slot-kosong?id_area=1
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+
+
+### 36. TRANSAKSI PARKIR MASUK
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor",
+  "warna": "Hitam",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+
+### 36A. TEST VALIDASI WARNA KOSONG
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor",
+  "warna": "",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+
+### 36B. TRANSAKSI PARKIR MASUK LENGKAP
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor",
+  "warna": "Hitam",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+### 37. CEK SLOT PARKIR KOSONG
+GET {{baseUrl}}/api/parkir/slot-kosong?id_area=1
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+
+### 38. CEK STATUS AREA DAN SLOT
+GET {{baseUrl}}/api/area/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+
+### 39. CEK DURASI DAN BIAYA PARKIR KELUAR
+GET {{baseUrl}}/api/parkir/cek-keluar/PK-00000001
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+
+### 40. KONFIRMASI PEMBAYARAN DAN PARKIR KELUAR
+POST {{baseUrl}}/api/parkir/keluar
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nomor_karcis": "PK-00000001",
+  "metode_pembayaran": "tunai",
+  "konfirmasi_bayar": true
+}
+
+### 41. CEK STATUS SLOT SETELAH PARKIR KELUAR
+GET {{baseUrl}}/api/area/1
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 42. LIHAT DATA STRUK PARKIR
+GET {{baseUrl}}/api/parkir/struk/PK-00000001
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+
+
+### 43. TAMBAH AKUN OWNER
+POST {{baseUrl}}/api/users
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nama_lengkap": "Owner Parkir",
+  "username": "owner1",
+  "password": "OwnerParkir123!",
+  "role": "owner",
+  "status_aktif": 1
+}
+
+### 44. LOGIN OWNER
+# @name loginOwner
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "owner1",
+  "password": "OwnerParkir123!"
+}
+
+### 45. REKAP TRANSAKSI PARKIR OWNER
+GET {{baseUrl}}/api/laporan/rekap?mulai=2026-11-17&sampai=2026-11-17
+Authorization: Bearer {{loginOwner.response.body.$.token}}
+
+### 46. CEK LOG AKTIVITAS ADMIN
+GET {{baseUrl}}/api/logs
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 47. LOGOUT OWNER
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{loginOwner.response.body.$.token}}
+
+### 48. UJI HAK AKSES OWNER KE FITUR ADMIN
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{loginOwner.response.body.$.token}}
+
+### 49. UJI KARCIS SUDAH DIGUNAKAN
+GET {{baseUrl}}/api/parkir/cek-keluar/PK-00000001
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+
+### 50. UJI PENOLAKAN TRANSAKSI KELUAR GANDA
+POST {{baseUrl}}/api/parkir/keluar
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nomor_karcis": "PK-00000001",
+  "metode_pembayaran": "tunai",
+  "konfirmasi_bayar": true
+}
+
+
+### 51. UJI JENIS KENDARAAN KOSONG
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "",
+  "warna": "Hitam",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+### 52. UJI WARNA KENDARAAN KOSONG
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "motor",
+  "warna": "",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+### 53. UJI JENIS KENDARAAN TIDAK SESUAI
+POST {{baseUrl}}/api/parkir/masuk
+Authorization: Bearer {{loginPetugas.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "plat_nomor": "B 1234 EGI",
+  "jenis_kendaraan": "truk",
+  "warna": "Hitam",
+  "id_area": 1,
+  "id_slot": 1
+}
+
+### 54. UJI AKSES TANPA TOKEN
+GET {{baseUrl}}/api/users

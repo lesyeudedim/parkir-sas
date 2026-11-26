@@ -1,0 +1,10 @@
+const router=require('express').Router();
+const c=require('../controllers/areaController');
+const {authenticate,authorize}=require('../middleware/auth');
+router.use(authenticate,authorize('admin'));
+router.get('/',c['get /area']);
+router.post('/',c['post /area']);
+router.get('/:id',c['get /area/:id']);
+router.put('/:id',c['put /area/:id']);
+router.delete('/:id',c['delete /area/:id']);
+module.exports=router;

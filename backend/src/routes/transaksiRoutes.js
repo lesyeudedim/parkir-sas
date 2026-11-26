@@ -1,0 +1,10 @@
+const router=require('express').Router();
+const c=require('../controllers/transaksiController');
+const {authenticate,authorize}=require('../middleware/auth');
+router.use(authenticate,authorize('petugas'));
+router.get('/slot-kosong',c['get /slot-kosong']);
+router.post('/masuk',c['post /masuk']);
+router.get('/cek-keluar/:nomor',c['get /cek-keluar/:nomor']);
+router.post('/keluar',c['post /keluar']);
+router.get('/struk/:nomor',c['get /struk/:nomor']);
+module.exports=router;
